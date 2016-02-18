@@ -20,8 +20,6 @@ namespace Prism.Core
 
         public ComponentHandler(int maxEntities)
         {
-          //  _typeId = typeId;
-
             _components = new T[maxEntities];
             _activeComponentIndices = new List<int>();
             _freeComponentIndices = new List<int>();
@@ -41,10 +39,12 @@ namespace Prism.Core
             return _components[entity];
         }
 
-        public void RemoveComponentFromEntity(uint entity)
+        public T RemoveComponentFromEntity(uint entity)
         {
+            var comp = _components[entity];
             _activeComponentIndices.Remove((int)entity);
             _freeComponentIndices.Add((int)entity);
+            return comp;
         }
 
         public T GetComponent(uint entity)

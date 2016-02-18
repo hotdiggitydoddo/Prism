@@ -16,5 +16,10 @@ namespace Prism.ConsoleTest.Components
             X = 0;
             Y = 0;
         }
+
+        public int TypeIndex()
+        {
+            return (int)ComponentTypes.Spatial;
+        }
     }
 }

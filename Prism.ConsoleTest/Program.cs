@@ -10,6 +10,8 @@ namespace Prism.ConsoleTest
     {
         static void Main(string[] args)
         {
+            var world = new World(1000);
+            var a = 1;
         }
     }
 }

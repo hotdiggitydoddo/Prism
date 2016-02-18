@@ -7,6 +7,8 @@ Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.Core", "Prism.Core\Pr
 EndProject
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Prism.ConsoleTest", "Prism.ConsoleTest\Prism.ConsoleTest.csproj", "{100CD52C-D3CC-4275-A174-3ECE8DC070DF}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "RogueSharp", "..\..\..\..\Downloads\FaronBracy-roguesharp-f5242466cfb7\FaronBracy-roguesharp-f5242466cfb7\RogueSharp\RogueSharp.csproj", "{EBCA7EA9-1C80-481A-8025-A465D6BA5F71}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -21,6 +23,10 @@ Global
 		{100CD52C-D3CC-4275-A174-3ECE8DC070DF}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{100CD52C-D3CC-4275-A174-3ECE8DC070DF}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{100CD52C-D3CC-4275-A174-3ECE8DC070DF}.Release|Any CPU.Build.0 = Release|Any CPU
+		{EBCA7EA9-1C80-481A-8025-A465D6BA5F71}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{EBCA7EA9-1C80-481A-8025-A465D6BA5F71}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{EBCA7EA9-1C80-481A-8025-A465D6BA5F71}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{EBCA7EA9-1C80-481A-8025-A465D6BA5F71}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

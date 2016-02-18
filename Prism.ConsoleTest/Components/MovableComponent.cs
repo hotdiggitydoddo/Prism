@@ -16,5 +16,10 @@ namespace Prism.ConsoleTest.Components
             VelX = 0;
             VelY = 0;
         }
+
+        public int TypeIndex()
+        {
+            return (int)ComponentTypes.Movable;
+        }
     }
 }

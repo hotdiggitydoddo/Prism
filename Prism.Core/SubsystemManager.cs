@@ -14,14 +14,15 @@ namespace Prism.Core
         public SubsystemManager(EntityManager em)
         {
             _em = em;
+            _subsystems = new List<Subsystem>();
         }
 
-        public void OnComponentAdded(uint entity)
+        public void OnComponentChanged(uint entity)
         {
             var mask = _em.GetComponentMask(entity);
             foreach (var subsystem in _subsystems)
             {
-                subsystem
+                subsystem.OnComponentChanged(entity, mask);
             }
         }
 
@@ -29,12 +30,19 @@ namespace Prism.Core
         {
             if (_subsystems.Contains(system)) return;
             _subsystems.Add(system);
+            system.Init(this, _em);
         }
 
         public void RemoveSubsystem(Subsystem system)
         {
             if (!_subsystems.Contains(system)) return;
             _subsystems.Remove(system);
+        }
+
+        public void Update(float dt)
+        {
+            foreach(var subsystem in _subsystems)
+                subsystem.Update(dt);
         }
 
         

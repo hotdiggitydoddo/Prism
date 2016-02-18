@@ -48,13 +48,30 @@ namespace Prism.Core
             return _entityComponentMasks[(int) entity];
         }
 
+        public void AddSubsystem<T>() where T : Subsystem, new()
+        {
+            var subsystem = new T();
+            _subsystemMgr.AddSubsystem(subsystem);
+        }
+
         public T AddComponent<T>(uint entity) where T : IComponent, new()
         {
             var handler = GetComponentHandler<T>();
             var comp = handler.AssignComponentToEntity(entity);
-            _entityComponentMasks[entity].SetBit(comp.TypeIndex());
 
-            _subsystemMgr.OnComponentAdded(entity);
+            _entityComponentMasks[entity].SetBit(comp.TypeIndex());
+            _subsystemMgr.OnComponentChanged(entity);
+
+            return comp;
+        }
+
+        public T RemoveComponent<T>(uint entity) where T : IComponent, new()
+        {
+            var handler = GetComponentHandler<T>();
+            var comp = handler.RemoveComponentFromEntity(entity);
+
+            _entityComponentMasks[entity].ClearBit(comp.TypeIndex());
+            _subsystemMgr.OnComponentChanged(entity);
 
             return comp;
         }
@@ -73,6 +90,11 @@ namespace Prism.Core
         public bool HasComponents(uint entity, BitSet componentTypes)
         {
             return componentTypes.IsSubsetOf(_entityComponentMasks[entity]);
+        }
+
+        public void Update(float dt)
+        {
+            _subsystemMgr.Update(dt);
         }
 
         void AccommodateEntity(int id)
