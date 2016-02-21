@@ -34,7 +34,7 @@ namespace Prism.Core
             return true;
         }
 
-        public void Broadcast(Message message)
+        public void Broadcast(IMessage message)
         {
             foreach (var observer in _observers)
                 observer.Notify(message);

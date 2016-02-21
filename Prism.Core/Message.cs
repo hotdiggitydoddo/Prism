@@ -6,17 +6,17 @@ using System.Threading.Tasks;
 
 namespace Prism.Core
 {
-    public struct Message
+    public interface IMessage
     {
-        public int Type { get; }
-        public uint Sender { get; }
-        public uint Receiver { get; }
+        int Type { get; }
+        uint Sender { get; }
+        //uint Receiver { get; }
 
-        public Message(int type, uint sender, uint receiver)
-        {
-            Type = type;
-            Sender = sender;
-            Receiver = receiver;
-        }
+        //public Message(int type, uint sender, uint receiver)
+        //{
+        //    Type = type;
+        //    Sender = sender;
+        //    Receiver = receiver;
+        //}
     }
 }

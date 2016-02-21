@@ -8,6 +8,6 @@ namespace Prism.Core
 {
     public interface IObserver
     {
-        void Notify(Message message);
+        void Notify(IMessage message);
     }
 }

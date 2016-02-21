@@ -11,7 +11,7 @@ namespace Prism.Core
         private BitSet _componentTypes { get; }
         protected List<uint> Entities { get; } 
         protected SubsystemManager SubsystemManager { get; private set; }
-        public abstract void Notify(Message message);
+        public abstract void Notify(IMessage message);
         public abstract void RegisterComponentHandlers(EntityManager em);
         protected Subsystem(params int[] componentTypes)
         {
@@ -24,7 +24,11 @@ namespace Prism.Core
         public void OnComponentChanged(uint entity, BitSet componentMask)
         {
             if (_componentTypes.IsSubsetOf(componentMask))
+            {
+                if (Entities.Contains(entity))
+                    return;
                 Entities.Add(entity);
+            }
             else
             {
                 if (Entities.Contains(entity))

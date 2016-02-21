@@ -12,11 +12,12 @@ namespace Prism.Core
         private readonly Stack<uint> _freeEntities;
         private uint _nextId = 0;
         private Dictionary<Type, IComponentHandler> _componentHandlers;
+        private WorldBase _world;
 
-        private SubsystemManager _subsystemMgr;
 
-        public EntityManager(int startingAmount)
+        public EntityManager(WorldBase world, int startingAmount)
         {
+            _world = world;
             _freeEntities = new Stack<uint>();
             _entityComponentMasks = new BitSet[startingAmount];
 
@@ -24,8 +25,6 @@ namespace Prism.Core
                 _entityComponentMasks[i] = new BitSet();
 
             _componentHandlers = new Dictionary<Type, IComponentHandler>();
-
-            _subsystemMgr = new SubsystemManager(this);
         }
 
         public uint CreateEntity()
@@ -48,10 +47,11 @@ namespace Prism.Core
             return _entityComponentMasks[(int) entity];
         }
 
-        public void AddSubsystem<T>() where T : Subsystem, new()
+        public T AddSubsystem<T>() where T : Subsystem, new()
         {
             var subsystem = new T();
-            _subsystemMgr.AddSubsystem(subsystem);
+            _world.SubsystemManager.AddSubsystem(subsystem);
+            return subsystem;
         }
 
         public T AddComponent<T>(uint entity) where T : IComponent, new()
@@ -60,7 +60,7 @@ namespace Prism.Core
             var comp = handler.AssignComponentToEntity(entity);
 
             _entityComponentMasks[entity].SetBit(comp.TypeIndex());
-            _subsystemMgr.OnComponentChanged(entity);
+            _world.SubsystemManager.OnComponentChanged(entity);
 
             return comp;
         }
@@ -71,7 +71,7 @@ namespace Prism.Core
             var comp = handler.RemoveComponentFromEntity(entity);
 
             _entityComponentMasks[entity].ClearBit(comp.TypeIndex());
-            _subsystemMgr.OnComponentChanged(entity);
+            _world.SubsystemManager.OnComponentChanged(entity);
 
             return comp;
         }
@@ -94,7 +94,7 @@ namespace Prism.Core
 
         public void Update(float dt)
         {
-            _subsystemMgr.Update(dt);
+            _world.SubsystemManager.Update(dt);
         }
 
         void AccommodateEntity(int id)

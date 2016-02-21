@@ -9,8 +9,9 @@
     <AppDesignerFolder>Properties</AppDesignerFolder>
     <RootNamespace>Prism.Core</RootNamespace>
     <AssemblyName>Prism.Core</AssemblyName>
-    <TargetFrameworkVersion>v4.6.1</TargetFrameworkVersion>
+    <TargetFrameworkVersion>v4.5</TargetFrameworkVersion>
     <FileAlignment>512</FileAlignment>
+    <TargetFrameworkProfile />
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
     <DebugSymbols>true</DebugSymbols>
@@ -46,6 +47,7 @@
     <Compile Include="EntityManager.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IObserver.cs" />
+    <Compile Include="IWorld.cs" />
     <Compile Include="Subsystem.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Messenger.cs" />

@@ -14,7 +14,7 @@ namespace Prism.ConsoleTest.Subsystems
         private ComponentHandler<MovableComponent> _movables;
           
         public PhysicsSubsystem() : base((int)ComponentTypes.Spatial, (int)ComponentTypes.Movable) { }
-        public override void Notify(Message message)
+        public override void Notify(IMessage message)
         {
             throw new NotImplementedException();
         }
