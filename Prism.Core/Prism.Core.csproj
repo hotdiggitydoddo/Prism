@@ -47,7 +47,7 @@
     <Compile Include="EntityManager.cs" />
     <Compile Include="IComponent.cs" />
     <Compile Include="IObserver.cs" />
-    <Compile Include="IWorld.cs" />
+    <Compile Include="WorldBase.cs" />
     <Compile Include="Subsystem.cs" />
     <Compile Include="Message.cs" />
     <Compile Include="Messenger.cs" />
